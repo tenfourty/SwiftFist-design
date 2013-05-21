@@ -1,18 +1,6 @@
 SwiftFist-design
 ================
-SwiftFist is a Backend-as-a-Service, designed to run in any Java Servlet container.  This covers standalone containers such as:
-
-* JBoss AS/WildFly
-* Apache Tomcat
-* Jetty
-* ... etc
-
-as well as hosted services such as:
-
-* Amazon Beanstalk
-* Red Hat OpenShift
-* Google AppEngine
-* ... etc
+SwiftFist is a Backend-as-a-Service, designed to run in any Java Servlet container.  
 
 ## Features
 The following features will be made available to an end-user/application developer accessing the SwiftFist website:
@@ -26,14 +14,43 @@ The following features will be made available to an end-user/application develop
 * Billing
 
 ## REST endpoints
-REST endpoints will be generated for the following functions related to a given entity:
+REST endpoints will be generated for the following functions related to a given entity.  All of these will be multi-tenant, of the form:
+
+`http://www.server.com/${function}/${org}/${app}/${user}`
 
 * Simple CRUD operations
 * Querying/search
 * Registration of push notifications
+* Placing messages on a queue for push
+* User auth and management
+* Integration, routing, remote APIs (Camel in the Cloud?)
 
-Further to entity management, the following will also be offered:
+## Supported clients
+Two primary classes of clients will be supported.  Desktop, via browser, and mobile.  
 
-* User management, authentication, etc. via OAuth and social media auth (e.g., "log in with a Google or Facebook account")
+### Desktop
+* Plain old Javascript
+ * Bindings to Angular and Backbone
+* Bindings to high-level development languages
+ * Ruby, Python, etc
 
+### Mobile
+* iOS
+* Android
+
+## Deployment model
+A Java WAR file that could be deployed in any servlet container.  This covers standalone containers such as:
+
+* JBoss AS/WildFly
+* Apache Tomcat
+* Jetty
+* ... etc
+
+as well as hosted services such as:
+
+* Amazon Beanstalk
+* Red Hat OpenShift
+* Google AppEngine
+* ... etc
  
+Later, using asynchronous event/loop models such as VertX may be explored.
